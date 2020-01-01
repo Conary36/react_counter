@@ -1,14 +1,15 @@
-import React, {useState}from 'react'
+import React, { useState, useContext } from 'react'
+import {ThemeContext } from './App'
 
-export default function CounterHooks({initialCount}){
+export default function CounterHooks({ initialCount }) {
     console.log('Render Counter Hooks')
     const [count, setCount] = useState(initialCount)
-    return(
-            <div>
-                <button onClick={()=> setCount(prevCount => prevCount -1)}>-</button>
-
-                 <span>{count}</span> {/*State is not native to functions..we must use Hooks. */}
-            <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
-            </div>
+    const style = useContext(ThemeContext)
+    return (
+        <div>
+            <button style={style}onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+            <span>{count}</span>
+            <button style={style}onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+        </div>
     )
 }
